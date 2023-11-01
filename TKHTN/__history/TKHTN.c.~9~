@@ -1,0 +1,44 @@
+#include <16f877a.h>
+#use delay(clock=4M)
+#define SW1    PIN_B1
+#define IN1    PIN_C2
+#define IN2    PIN_C3
+#define SW2    PIN_B2
+#define EN    PIN_C5
+#define SS    PIN_B0
+#int_ext
+void isrext(){
+IF(EN==0) delay_ms(5000);
+if (t==0) thuan();
+if (t==1) {
+nghich();
+t=~t;
+}
+}
+void thuan(){
+IN1=1;
+IN2=0;
+EN=1;
+}
+void nghich(){
+IN1=0;
+IN2=1;
+EN=1;
+}
+void main(){
+int t=0;
+EN =0;
+set_tris_b(0xff);
+set_tris_c(0x00);
+enable_interrupts(int_ext);
+enable_interrupts(global);
+ext_int_edge(h_TO_l);
+while(1){
+IF(SW1==1){
+EN=0;
+t=~t;
+delay_ms(5000);
+}
+IF(SW2==1){EN=0;}
+}
+}

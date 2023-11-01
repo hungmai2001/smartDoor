@@ -1,0 +1,93 @@
+#include <16f887.h>
+#use delay(clock=20M)
+#define UP    PIN_B0
+#define DOWN    PIN_B1
+#define START    PIN_B2
+#include <lcd.c>
+unsigned int16 value,cap,b,c,T0;
+ int1 TTDC;
+ #int_timer0
+ void interrput_timer0(){
+ c++;
+ }
+void phim_up(){   
+      if(!input(UP))
+        cap++ ;
+       if (cap>10) cap=10;
+
+   }
+  void phim_down(){   
+      if(!input(DOWN)){
+      if(!input(DOWN)){
+      while(!input(DOWN)) {}
+        cap-- ;
+        if (cap<1) cap=1;
+       
+     
+        }
+       }
+    }
+  void phim_start(){   
+      if(!input(START)){
+      if(!input(START)){
+      while(!input(START)) {}
+         TTDC=~TTDC;
+         if (TTDC==1) cap=1;
+         else cap=0;
+       
+     
+        }
+       }
+     
+  }
+  
+void main(){
+set_tris_b(0xff);
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   LCD_init();
+   setup_timer_0(T0_EXT_L_to_H|T0_DIV_1);
+   enable_interrupts(global);
+   enable_interrupts(int_timer0);
+  output_low(PIN_C3);
+  output_high(PIN_C7);
+  setup_CCP1(CCP_PWM);
+  setup_timer_2(T2_DIV_BY_16,249,1);
+  set_timer2(0);
+  value =0;
+  cap=0;
+  TTDC=0;
+  set_pwm1_duty(cap*100);
+  
+  
+ 
+  while(1){
+    if(TTDC==1){
+    phim_up();
+    phim_down();
+    }
+    phim_start();
+    value= cap*100;
+    set_pwm1_duty(value);
+    set_timer0(0);
+    delay_ms(500);
+    T0= get_timer0()+c*256;
+    c=0;
+    b=(T0*120)/50;
+    lcd_putc("\f");
+    lcd_gotoxy(1,2);
+    printf(lcd_putc,"tocdo %lu",b);
+    lcd_gotoxy(1,1);
+    printf(lcd_putc,"cap%lu",cap);
+    
+    
+
+  
+    
+    
+   
+   }
+  }
+
+
+

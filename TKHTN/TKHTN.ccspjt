@@ -1,0 +1,89 @@
+[Directories]
+Include=
+Library=
+LinkerScript=
+output=
+
+[defines]
+enabled=0
+chip=1
+D1=
+V1=
+buildcount=12
+
+[fileformats]
+forcecoff=0
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+expandtree=0
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+
+[PROJECT]
+Target=DTUD.hex
+Development_Mode=
+Processor_Text=PIC16F887
+ToolSuite=CCS
+CCSVersion=5.101
+Compiler=PCM
+
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+FileList=DTUD.c
+
+[DTUD.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=DTUD.c
+
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+
+
+[CompilerVersion]
+Fixed=
+
+[Opened Files]
+1=DTUD.c
+t1=6
+Count=2
+2=C:\Program Files (x86)\PICC\Drivers\lcd.c
+t2=190
+
+[ProjectLog]
+Days=2
+D1=26-05-2022
+D1_L=10
+D1_L1=[81451]Project Closed.
+D1_L2=[81451]Project Opened.
+D1_L3=[81468]Project Closed.
+D1_L4=[81468]Project Opened.
+D1_L5=[81474]Project Closed.
+D1_L6=[81538]Project Opened.
+D1_L7=[81669]Started Editing.
+D1_L8=[82831]Stopped Editing.
+D1_L9=[83066]Started Editing.
+D1_L10=[83959]Stopped Editing.
+D2=27-05-2022
+D2_L=2
+D2_L1=[56861]Project Opened.
+D2_L2=[56892]Project Closed.
+[Units]
+Count=1
+1=DTUD (main)
